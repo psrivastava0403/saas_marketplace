@@ -9,7 +9,10 @@ class OrdersController < ApplicationController
   end
 
   def index
-    orders = current_company.orders.includes(:client, :product)
+    orders = current_company
+               .orders
+               .includes(:product, :client)
+
     render json: orders
   end
 

@@ -5,11 +5,14 @@ class ClientsController < ApplicationController
       params: client_params
     ).call
 
-    render json: company_client
+    render json: company_client, status: :created
   end
 
   def index
-    clients = current_company.company_clients.includes(:client)
+    clients = current_company
+                .company_clients
+                .includes(:client)
+
     render json: clients
   end
 

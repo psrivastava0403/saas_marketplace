@@ -1,8 +1,6 @@
 class CompanyClientSerializer < ActiveModel::Serializer
   attributes :id, :name, :email, :phone
 
-  belongs_to :client
-
   def name
     object.name || object.client.name
   end

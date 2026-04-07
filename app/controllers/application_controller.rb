@@ -14,7 +14,7 @@ class ApplicationController < ActionController::API
       @current_user = User.find(decoded[:user_id])
       @current_company = @current_user.company
     rescue
-      render json: { error: 'Unauthorized' }, status: :unauthorized
+      render json: { error: "Unauthorized" }, status: :unauthorized
     end
   end
 end

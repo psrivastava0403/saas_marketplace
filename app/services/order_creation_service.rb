@@ -5,13 +5,10 @@ class OrderCreationService
   end
 
   def call
-    product = company.products.find(params[:product_id])
-    client = company_client.client
-
     Order.create!(
       company: company,
       product: product,
-      client: client,
+      client: company_client.client,
       quantity: params[:quantity]
     )
   end
@@ -19,6 +16,10 @@ class OrderCreationService
   private
 
   attr_reader :company, :params
+
+  def product
+    company.products.find(params[:product_id])
+  end
 
   def company_client
     company.company_clients.find(params[:company_client_id])
